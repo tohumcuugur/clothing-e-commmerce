@@ -9,15 +9,9 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import "./navigation.styles.scss";
 
 const Navigation = () => {
-    const { currentUser , setCurrentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext)
     // console.log(currentUser);
 
-    const signOutHandler = async () =>{
-        const res = await signOutUser();
-        // console.log(res);
-        setCurrentUser(null); //set current user ile currentUser'a ilk değer olan null değerini atıyoruz ve Sing Out yerine direk olarak sign in tekrardan gelmiş oluyor.
-
-    }
 
     return (
         <Fragment>
@@ -31,7 +25,7 @@ const Navigation = () => {
                     </Link>
                     {
                         currentUser ?
-                            (<span className="nav-link" onClick={signOutHandler}>SING OUT</span>)
+                            (<span className="nav-link" onClick={signOutUser}>SING OUT</span>)
                             : (<Link className="nav-link" to="/auth">SIGN IN</Link>)
                     }
 
