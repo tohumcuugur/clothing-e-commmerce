@@ -1,6 +1,9 @@
 import { Fragment, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 
+import CardIcon from "../../components/card-icon/card-icon.component";
+import CardDropdown from "../../components/card-dropdown/card-dropdown.component";
+
 import { ReactComponent as Logo } from "..//..//assets/icons8-hitfilm-pro.svg";
 import { UserContext } from "../../contexts/user.context";
 
@@ -28,8 +31,9 @@ const Navigation = () => {
                             (<span className="nav-link" onClick={signOutUser}>SING OUT</span>)
                             : (<Link className="nav-link" to="/auth">SIGN IN</Link>)
                     }
-
+                    <CardIcon/>
                 </div>
+                <CardDropdown />
             </div>
             <Outlet />
         </Fragment>
