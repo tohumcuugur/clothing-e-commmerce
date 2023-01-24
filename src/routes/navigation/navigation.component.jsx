@@ -6,14 +6,16 @@ import CardDropdown from "../../components/card-dropdown/card-dropdown.component
 
 import { ReactComponent as Logo } from "..//..//assets/icons8-hitfilm-pro.svg";
 import { UserContext } from "../../contexts/user.context";
+import { CardContext } from "../../contexts/card.context";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.scss";
 
 const Navigation = () => {
-    const { currentUser } = useContext(UserContext)
+    const { currentUser } = useContext(UserContext);
     // console.log(currentUser);
+    const { isCardOpen } = useContext(CardContext);
 
 
     return (
@@ -31,12 +33,14 @@ const Navigation = () => {
                             (<span className="nav-link" onClick={signOutUser}>SING OUT</span>)
                             : (<Link className="nav-link" to="/auth">SIGN IN</Link>)
                     }
-                    <CardIcon/>
+                    <CardIcon />
                 </div>
-                <CardDropdown />
+                {isCardOpen && <CardDropdown />}
             </div>
             <Outlet />
         </Fragment>
     )
 }
 export default Navigation;
+
+//{isCardOpen && <CardDropdown />} iscard open true ise carddropdown'u indirip açacak.
