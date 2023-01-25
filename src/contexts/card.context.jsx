@@ -29,7 +29,7 @@ export const CardProvider = ({ children }) => {
         setCardItems(addCardItem(cardItems, productToAdd))
     };
 
-    const value = { isCardOpen, setIsCardOpen };
+    const value = { isCardOpen, setIsCardOpen, cardItems, addItemToCard };
 
     return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
 }
