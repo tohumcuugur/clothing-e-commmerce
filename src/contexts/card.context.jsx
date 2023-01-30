@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const addCardItem = (cardItems, productToAdd) => {
     const existingCardItem = cardItems.find(
@@ -19,17 +19,25 @@ export const CardContext = createContext({
     setIsCardOpen: () => { },
     cardItems: [],
     addItemToCard: () => { },
+    cardCount: 0,
 })
 
 export const CardProvider = ({ children }) => {
     const [isCardOpen, setIsCardOpen] = useState(false);
     const [cardItems, setCardItems] = useState([]);
+    const [cardCount, setCardCount] = useState(0);
+
+    useEffect(() => {
+        const newCardCount = cardItems.reduce((total ,cardItem) => total+ cardItem.quantity, 0)
+        setCardCount(newCardCount);
+    }, [cardItems])
+
 
     const addItemToCard = (productToAdd) => {
         setCardItems(addCardItem(cardItems, productToAdd))
     };
 
-    const value = { isCardOpen, setIsCardOpen, cardItems, addItemToCard };
+    const value = { isCardOpen, setIsCardOpen, cardItems, addItemToCard, cardCount };
 
     return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
 }
