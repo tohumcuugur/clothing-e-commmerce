@@ -9,8 +9,6 @@ import CardItem from "../card-item/card-item.component"
 
 import "./card-dropdown.styles.scss"
 
-import React from 'react';
-
 const CardDropdown = () => {
     const { cardItems } = useContext(CardContext)
     const navigate = useNavigate();

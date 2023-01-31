@@ -4,37 +4,38 @@ import { useContext } from "react";
 
 import { CardContext } from "../../contexts/card.context";
 
-
+import CheckOutItem from "../../components/checkout-item/checkout-item.component";
 
 const CheckOut = () => {
     const { cardItems, addItemToCard, removeItemToCard } = useContext(CardContext)
     return (
-        <div>
-            <ul className="header">
-                <li>Product</li>
-                <li>Description</li>
-                <li>Quantity</li>
-                <li>Price</li>
-                <li>Remove</li>
-            </ul>
-            <div className="card-items">
-                {
-                    cardItems.map((cardItem) => {
-                        const { id, name, quantity } = cardItem;
-                        return (
-                            <div key={id}>
-                                <h2>{name}</h2>
-                                <span>{quantity}</span>
-                                <br />
-                                <span onClick={() => removeItemToCard(cardItem)}>decrement</span>
-                                <br />
-                                <span onClick={() => addItemToCard(cardItem)}>increment</span>
-                            </div>
-                        )
-                    })
-                }
+        <div className="checkout-container">
+            <div className="checkout-header">
+                <div className="header-block">
+                    <span>Product</span>
+                </div>
+                <div className="header-block">
+                    <span>Description</span>
+                
+                </div>
+                <div className="header-block">
+                    <span>Quantity</span>
+                
+                </div>
+                <div className="header-block">
+                    <span>Price</span>
+                
+                </div>
+                <div className="header-block">
+                    <span>Remove</span>
+                </div>
             </div>
-
+                {
+                    cardItems.map((cardItem) => (
+                        <CheckOutItem key={cardItem.id} cardItem={cardItem}/>
+                        ))
+                }
+                <span className="total">Total:0</span>
         </div>
 
     )
