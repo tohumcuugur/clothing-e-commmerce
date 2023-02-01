@@ -29,6 +29,9 @@ const removeCardItem = (cardItems, cardItemToRemove) => {
         : cardItem
     )
 }
+const clearCardItem = (cardItems, cardItemToClear) => {
+    return cardItems.filter((cardItem) => cardItem.id !== cardItemToClear.id);
+}
 
 export const CardContext = createContext({
     isCardOpen: false,
@@ -36,17 +39,25 @@ export const CardContext = createContext({
     cardItems: [],
     addItemToCard: () => { },
     removeItemFromCard: () => { },
+    clearItemFromCard: () => {},
     cardCount: 0,
+    cardTotal:0,
 })
 
 export const CardProvider = ({ children }) => {
     const [isCardOpen, setIsCardOpen] = useState(false);
     const [cardItems, setCardItems] = useState([]);
     const [cardCount, setCardCount] = useState(0);
+    const [cardTotal, setCardTotal] = useState(0);
 
     useEffect(() => {
         const newCardCount = cardItems.reduce((total, cardItem) => total + cardItem.quantity, 0)
         setCardCount(newCardCount);
+    }, [cardItems])
+
+    useEffect(() => {
+        const newCardTotal = cardItems.reduce((total, cardItem) => total + cardItem.quantity * cardItem.price, 0)
+        setCardTotal(newCardTotal);
     }, [cardItems])
 
 
@@ -56,8 +67,12 @@ export const CardProvider = ({ children }) => {
     const removeItemToCard = (cardItemToRemove) => {
         setCardItems(removeCardItem(cardItems, cardItemToRemove))
     };
+    const clearItemFromCard = (cardItemToClear) => {
+        setCardItems(clearCardItem(cardItems, cardItemToClear))
+    };
 
-    const value = { isCardOpen, setIsCardOpen, cardItems, addItemToCard, cardCount, removeItemToCard };
+
+    const value = { isCardOpen, setIsCardOpen, cardItems, addItemToCard, cardCount, removeItemToCard, clearItemFromCard ,cardTotal};
 
     return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
 }

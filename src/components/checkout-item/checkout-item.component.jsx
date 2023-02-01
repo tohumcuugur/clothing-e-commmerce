@@ -1,17 +1,31 @@
+import { useContext } from "react";
+
+import { CardContext } from "../../contexts/card.context";
+
 import "./checkout-item.styles.scss"
 
-const CheckOutItem = ({cardItem}) =>{
-    const {name,imageUrl,price,quantity} = cardItem;
+const CheckOutItem = ({ cardItem }) => {
+    const { name, imageUrl, price, quantity } = cardItem;
 
-    return(
+    const { clearItemFromCard, addItemToCard, removeItemToCard } = useContext(CardContext);
+
+    const clearItemHandler = () => clearItemFromCard(cardItem);
+    const addItemHandler = () => addItemToCard(cardItem);
+    const removeItemHandler = () => removeItemToCard(cardItem);
+
+    return (
         <div className="checkout-item-container">
             <div className="image-container">
-                <img src={imageUrl} alt={`${name}`}/>
+                <img src={imageUrl} alt={`${name}`} />
             </div>
             <span className="name">{name}</span>
-            <span className="quantity">{quantity}</span>
+            <span className="quantity">
+                <div className="arrow" onClick={removeItemHandler}>&#10094;</div>
+                <span className="value">{quantity}</span>
+                <div className="arrow" onClick={addItemHandler}>&#10095;</div>
+            </span>
             <span className="price">{price}</span>
-            <div className="remove-button">&#10060;</div>
+            <div className="remove-button" onClick={clearItemHandler}>&#10060;</div>
         </div>
     )
 
@@ -19,11 +33,3 @@ const CheckOutItem = ({cardItem}) =>{
 
 export default CheckOutItem;
 
-// <div key={id}>
-// <h2>{name}</h2>
-// <span>{quantity}</span>
-// <br />
-// <span onClick={() => removeItemToCard(cardItem)}>decrement</span>
-// <br />
-// <span onClick={() => addItemToCard(cardItem)}>increment</span>
-// </div>

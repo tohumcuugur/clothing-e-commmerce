@@ -10,11 +10,12 @@ import CardItem from "../card-item/card-item.component"
 import "./card-dropdown.styles.scss"
 
 const CardDropdown = () => {
-    const { cardItems } = useContext(CardContext)
+    const { cardItems, isCardOpen, setIsCardOpen } = useContext(CardContext)
     const navigate = useNavigate();
 
-    const checkOutHandler = () =>{
+    const checkOutHandler = () => {
         navigate("/checkout");
+        setIsCardOpen(!isCardOpen);
     }
     return (
         <div className="card-dropdown-container">
