@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app"
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth"
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore"
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore"
 
 const firebaseConfig = {
     apiKey: "AIzaSyB97JCJUXEC-WUbXJ8NxULJXKxnnt43Cpw",
-    authDomain: "clothing-db-8630d.firebaseapp.com",
+    authDomain: "clothing-db-8630d.firebaseapp.com", 
     projectId: "clothing-db-8630d",
     storageBucket: "clothing-db-8630d.appspot.com",
     messagingSenderId: "599472620027",
@@ -24,6 +24,32 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = collection(db, collectionKey); // db içindeki collectionlardan' istenen collectionKey'e sahip olanın ref'ini al.Users ve categories keydir.
+    const batch = writeBatch(db);
+    objectsToAdd.forEach((object) => {
+        const docRef = doc(collectionRef, object.title.toLowerCase());//object.title.toLowerCase() bu key değeri categories altındaki, hats,jackets,mens,sneakers,womans, kısımlarını temsil ediyor. yani yukarıda collentionRef'te categoriesi aldım.Burada ise categories altındaki , elemanların referansını almış oldum.
+        batch.set(docRef, object)
+    });
+
+    await batch.commit();
+    console.log("done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, "categories");
+    const q = query(collectionRef);
+
+    const querySnapShot = await getDocs(q);
+    const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot) => {
+        const {title, items} = docSnapShot.data();
+        acc[title.toLowerCase()] = items;
+        return acc;
+    }, {});
+
+    return categoryMap;
+}
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
     //if user data does not exist
