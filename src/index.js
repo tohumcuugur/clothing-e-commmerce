@@ -11,7 +11,6 @@ import { CardProvider } from './contexts/card.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
         <ProductsProvider>
@@ -21,7 +20,6 @@ root.render(
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
 

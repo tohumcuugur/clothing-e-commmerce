@@ -15,7 +15,7 @@ export const ProductsProvider = ({children}) =>{
         const getCategoriesMap = async () =>{
             const categoryMap = await getCategoriesAndDocuments()
             console.log(categoryMap);
-        }
+        };
         getCategoriesMap();
     }, []);
     // useEffectin async function ile kullanılabilmesi için kendi async functionumuzu oluşturmamız gerekiyor.
