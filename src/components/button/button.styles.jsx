@@ -1,4 +1,6 @@
-.button-container {
+import styled from "styled-components";
+
+export const BaseButton = styled.button`
     min-width: 150px;
     height: 50px;
     letter-spacing: 0.5px;
@@ -11,41 +13,40 @@
     border: none;
     cursor: pointer;
     display: block;
+
     &:hover {
       background-color: white;
       color: black;
       border: 1px solid black;
     }
-  
-    &.google-sign-in {
+`;
+export const GoogleSignInButton = styled(BaseButton)`
       background-color: #4285f4;
       color: white;
-
       &:hover {
         background-color: #357ae8;
         border: none;
       }
-    }
-    &.google-red-sign-in {
-      background-color: #15a841;
-      color: white;
+    
+`
+export const GoogleRedSignInButton = styled(BaseButton)`
+    background-color: #15a841;
+    color: white;
 
-      &:hover {
-        background-color: #1dda55;
-        border: none;
-      }
+    &:hover {
+      background-color: #1dda55;
+      border: none;
     }
-  
-    &.inverted {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
-  
-      &:hover {
-        background-color: black;
-        color: white;
-        border: none;
-      }
-    }
+`
+export const InvertedButton = styled(BaseButton)`
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+    border: none;
   }
-  
+
+`

@@ -1,4 +1,6 @@
-.directory-item-container {
+import styled from "styled-components";
+
+export const DirectoryItemContainer = styled.div`
   min-width: 30%;
   height: 240px;
   flex: 1 1 auto;
@@ -39,9 +41,10 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-  }
+  };
+`
 
-  .body {
+export const Body = styled.div`
     height: 90px;
     padding: 0 25px;
     display: flex;
@@ -52,7 +55,6 @@
     background-color: white;
     opacity: 0.7;
     position: absolute;
-
     h2 {
       font-weight: bold;
       margin: 0 6px 0;
@@ -64,5 +66,4 @@
       font-weight: lighter;
       font-size: 16px;
     }
-  }
-}
+ `

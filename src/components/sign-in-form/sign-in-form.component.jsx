@@ -1,7 +1,7 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 
 import { getRedirectResult } from "firebase/auth"
@@ -75,9 +75,8 @@ const SignInForm = () => {
 
                 <div className="buttons-container">
                     <Button type="submit">Sign In</Button>
-                    <Button type="button" buttonType="google" onClick={signInWıthGoogle}>Google Sign</Button>
-                    <Button type="button" buttonType="googleRed" onClick={signInWithGoogleRedirect}>Google Redirect</Button>
-
+                    <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWıthGoogle}>Google Sign</Button>
+                    <Button type="button" buttonType={BUTTON_TYPE_CLASSES.googleRed} onClick={signInWithGoogleRedirect}>Google Redirect</Button>
                 </div>
             </form>
         </div>
