@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { BaseButton, GoogleSignInButton, GoogleRedSignInButton, InvertedButton } from "..//button/button.styles";
 
 export const CardDropdownContainer = styled.div`
