@@ -7,7 +7,7 @@ import Button from "../button/button.component"
 
 import CardItem from "../card-item/card-item.component"
 
-import "./card-dropdown.styles.scss"
+import { CardDropdownContainer, EmptyMessage, CardItems } from"./card-dropdown.styles.jsx"
 
 const CardDropdown = () => {
     const { cardItems, isCardOpen, setIsCardOpen } = useContext(CardContext)
@@ -18,12 +18,15 @@ const CardDropdown = () => {
         setIsCardOpen(!isCardOpen);
     }
     return (
-        <div className="card-dropdown-container">
-            <div className="card-items">
-                {cardItems.map(item => <CardItem key={item.id} cardItem={item} />)}
-            </div>
+        <CardDropdownContainer>
+            <CardItems>
+                {
+                    cardItems.length ? cardItems.map(item => (<CardItem key={item.id} cardItem={item} />))
+                        : (<EmptyMessage>Your card is empty</EmptyMessage>)
+                }
+            </CardItems>
             <Button onClick={checkOutHandler}>GO TO CHECK OUT</Button>
-        </div>
+        </CardDropdownContainer>
     )
 }
 
