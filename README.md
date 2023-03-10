@@ -1,6 +1,17 @@
 https://user-images.githubusercontent.com/96912858/224296084-90165818-751d-4f54-bf85-308f9e1795c5.mp4
 
+This is a clothing e-commerce app. U can add,delete product to the basket, or change the quantity of the product.I did crud operations with firestore db, and u can sign-in by registering with email and password or using google sign in and google redirect(**Firebase Authentication**) options.By using Name , email , password u can sign-up all data is kept in database.
 
+
+
+<h1>FOR DEMO</h1>
+<h2>https://clothing-e-commerce11.netlify.app/</h2>
+
+![Ekran görüntüsü 2023-03-10 134119](https://user-images.githubusercontent.com/96912858/224296665-f6d295e9-4712-41e3-9b4b-ca6106c82685.png)
+![Ekran görüntüsü 2023-03-10 134145](https://user-images.githubusercontent.com/96912858/224296672-c0d4aff0-1376-45ac-8631-3e3c291f5fc1.png)
+![Ekran görüntüsü 2023-03-10 134225](https://user-images.githubusercontent.com/96912858/224296681-41b0e2f7-0478-4b07-997c-8d761c432d6e.png)
+![Ekran görüntüsü 2023-03-10 134237](https://user-images.githubusercontent.com/96912858/224297027-f86ded24-5d88-49ed-9704-4fcc589edc7d.png)
+![Ekran görüntüsü 2023-03-10 134247](https://user-images.githubusercontent.com/96912858/224296689-0b3fdcd9-40fc-4514-9e2b-7b8de480d520.png)
 
 
 
